@@ -45,6 +45,7 @@ class Coverflow extends Component {
     otherFigureScale: PropTypes.number,
     active: PropTypes.number,
     media: PropTypes.any,
+    onSwitch: PropTypes.any,
     infiniteScroll: PropTypes.bool,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -60,6 +61,7 @@ class Coverflow extends Component {
     active: 0,
     media: {},
     infiniteScroll: false,
+    onSwitch: ()=>{},
     width: 'auto',
     height: 'auto',
   };
@@ -166,7 +168,12 @@ class Coverflow extends Component {
                   >
                     {renderPrevBtn && (
                       <div
-                        onClick={(e) => this._handlePrevFigure(e)}
+                        onClick={
+                          (e) => {
+                            this.props.onSwitch();
+                            return this._handlePrevFigure(e);
+                          }
+                        }
                         className={`${styles.arrow} ${styles.left}`}
                       >
                         <span/>
@@ -175,7 +182,12 @@ class Coverflow extends Component {
                     {this._renderFigureNodes()}
                     {renderNextBtn && (
                       <div
-                        onClick={(e) => this._handleNextFigure(e)}
+                        onClick={
+                          (e) => {
+                            this.props.onSwitch();
+                            return this._handleNextFigure(e);
+                          }
+                        }
                         className={`${styles.arrow} ${styles.right}`}
                       >
                         <span/>
