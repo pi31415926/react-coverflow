@@ -170,7 +170,6 @@ class Coverflow extends Component {
                       <div
                         onClick={
                           (e) => {
-                            this.props.onSwitch();
                             return this._handlePrevFigure(e);
                           }
                         }
@@ -184,7 +183,6 @@ class Coverflow extends Component {
                       <div
                         onClick={
                           (e) => {
-                            this.props.onSwitch();
                             return this._handleNextFigure(e);
                           }
                         }
@@ -341,6 +339,7 @@ class Coverflow extends Component {
       this.setState({ current: this.props.children.length - 1, move });
       TOUCH.lastMove = move;
     }
+    this.props.onSwitch();
   };
 
   _handleNextFigure = (e) => {
@@ -359,6 +358,7 @@ class Coverflow extends Component {
       this.setState({ current: 0, move });
       TOUCH.lastMove = move;
     }
+    this.props.onSwitch();
   };
 
   _handleWheel(e) {
